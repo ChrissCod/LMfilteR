@@ -1,7 +1,7 @@
 Package: LMfilteR
 Type: Package
 Title: Filter Methods for Parameter Estimation in Linear Regression Models
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
   person("Christian", "Llano Robayo", email = "cxl985@miami.edu", role = c("aut","cre")),
   person("Nazrul", "Shaikh", email = "n.shaikh@miami.edu", role = "aut")
