@@ -2,7 +2,7 @@
 % Please edit documentation in R/PF_lm_ss.R
 \name{PF_lm_ss}
 \alias{PF_lm_ss}
-\title{Parameter Estimation Of Linear Regression Using Particle Filters}
+\title{Parameter Estimation Of Linear Regression Using Particle Filters With Simple Sampling}
 \usage{
 PF_lm_ss(Data1, n = 500L, sigma_l = 1, sigma_est = FALSE, initDisPar)
 }
