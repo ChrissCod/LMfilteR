@@ -1,4 +1,4 @@
-#' Parameter Estimation Of Linear Regression Using Particle Filters
+#' Parameter Estimation Of Linear Regression Using Particle Filters With Simple Sampling
 
 #' @description Estimation of the coefficients of a linear regression based on the particle filters algorithm. This function is similar to \code{PF_lm} except for the resampling method which in this case is the simple sampling.
 #' As result, the user can try higher number of particles.
