@@ -58,7 +58,7 @@
 #'                        Sigma = diag(4),
 #'                        empirical = TRUE)
 #' Y1 <- colSums(t(cbind(1,Data1))*val_coef)
-#' prb <- 1 / (1+exp(-Y1))
+#' prb <- 1 / (1 + exp(-Y1))
 #' Y_ <- rbinom(100, size = 1, prob = prb) ##
 #' #Run EPF
 #' Res <- EPF_logist_compl(Data = Data1, Y = Y_)
@@ -111,14 +111,13 @@ EPF_logist_compl <- function(Data, Y, nPart = 1000L,
     st_temp_bst_idx <- st_temp[bst_idx,]
     w_bst_idx <- A_2[bst_idx]
 
-    # Select remaining npart*(1-p_select) (Achtung! not excluding top p_select)
     temp1 <- meth_rsmpl(A_2)
-    #temp1 <- sample(temp1, (1- p_select)*nPart)
-    st_temp <- st_temp[temp1,] #now st_temp migrates to less particles space
+    st_temp <- st_temp[temp1,]
 
     #Cross-over
-    n_st_tmp <- 1:nrow(st_temp) #indices of st_temp cause now it has new size
+    n_st_tmp <- 1:nrow(st_temp)
     k <-1
+
     while(k < nPart*p_cross){
       a1 <- sample(n_st_tmp, 2)
       b1<- colMeans(st_temp[a1,])
@@ -130,13 +129,12 @@ EPF_logist_compl <- function(Data, Y, nPart = 1000L,
     # Mutation
     if(j < count & p_mut>0){
       s1 <- sample(n_st_tmp, size =  p_mut*nPart)
-      temp_part <- mapply(stats::runif, initDisPar[, 1], #generating uniform distribution for each beta
+      temp_part <- mapply(stats::runif, initDisPar[, 1],
                           initDisPar[,  2],
                           n = p_mut*nPart, SIMPLIFY = TRUE)
       st_temp[s1,] <- temp_part
     }
 
-    # Collecting (1-p_perc)*npart and top particles
     st_temp <- rbind(st_temp,st_temp_bst_idx)
 
     j<-j+1

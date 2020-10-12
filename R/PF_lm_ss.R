@@ -50,7 +50,7 @@
 #'
 #' \dontrun{
 #' #### Using default Data1, no sigma estimation ####
-#' Res <- PF_lm_ss(n=10000L, sigma_est = FALSE) #10 times more than in PF_lm
+#' Res <- PF_lm_ss(n = 10000L, sigma_est = FALSE) #10 times more than in PF_lm
 #' lapply(Res,class) # Structure of returning list.
 #' ###Summary of estimated parameters
 #' Res$summ
@@ -106,7 +106,7 @@ PF_lm_ss <- function(Y, Data1, n = 500L, sigma_l = 1, sigma_est = FALSE, initDis
     Y <- 2 + 1.25*Data1[,1] + 2.6*Data1[,2] - 0.7*Data1[,3] + eps
   }
 
-  if (!is.data.frame(Data1))
+  if (!is.data.frame(Data1)& !is.matrix(Data1))
     stop("Argument 'Data1' must be a data frame or matrix", call. = FALSE)
 
   if (length(n)>1)
@@ -125,6 +125,7 @@ PF_lm_ss <- function(Y, Data1, n = 500L, sigma_l = 1, sigma_est = FALSE, initDis
   if (nrow(Data1) != length(Y))
     stop("Data1 and Y with different dimensions", call. = FALSE)
 
+  Data1 <- data.frame(Data1)
   obs <- nrow(Data1)
   nv <- ncol(Data1)
 

@@ -73,7 +73,7 @@ In case no \code{Data1} is provided, a synthetic data set is generated automatic
 
 \dontrun{
 #### Using default Data1, no sigma estimation ####
-Res <- PF_lm_ss(n=10000L, sigma_est = FALSE) #10 times more than in PF_lm
+Res <- PF_lm_ss(n = 10000L, sigma_est = FALSE) #10 times more than in PF_lm
 lapply(Res,class) # Structure of returning list.
 ###Summary of estimated parameters
 Res$summ

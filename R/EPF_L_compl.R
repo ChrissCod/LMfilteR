@@ -68,8 +68,8 @@
 #' @export
 
 
-EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sigma_l = 1, lmbd = 3, count = 10, initDisPar, resample_met = syst_rsmpl
-){
+EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sigma_l = 1, lmbd = 3, count = 10, initDisPar, resample_met = syst_rsmpl)
+  {
 
   meth_rsmpl <- resample_met
   p_select <- 0
@@ -85,8 +85,8 @@ EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sig
   pred <- matrix(NA,nrow(Data)-movH+1,nv+1)
 
   if (missing(initDisPar)) {
-    initDisPar <-  cbind(stats::coef(stats::glm(Y1 ~ ., data = D1, family = "binomial")) - lmbd,
-                         stats::coef(stats::glm(Y1 ~ ., data = D1, family = "binomial")) + lmbd)
+    initDisPar <-  cbind(stats::coef(stats::lm(Y1 ~ ., data = D1)) - lmbd,
+                         stats::coef(stats::lm(Y1 ~ ., data = D1)) + lmbd)
   }
   st_temp <- mapply(stats::runif, initDisPar[, 1], #generating uniform distribution for each beta
                     initDisPar[,  2],
@@ -110,13 +110,11 @@ EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sig
     st_temp_bst_idx <- st_temp[bst_idx,]
     w_bst_idx <- A_2[bst_idx]
 
-    # Select remaining npart*(1-p_select) (Achtung! not excluding top p_select)
     temp1 <- meth_rsmpl(A_2)
-    #temp1 <- sample(temp1, (1- p_select)*nPart)
-    st_temp <- st_temp[temp1,] #now st_temp migrates to less particles space
+    st_temp <- st_temp[temp1,]
 
     #Cross-over
-    n_st_tmp <- 1:nrow(st_temp) #indices of st_temp cause now it has new size
+    n_st_tmp <- 1:nrow(st_temp)
     k <-1
     while(k < nPart*p_cross){
       a1 <- sample(n_st_tmp, 2)
@@ -131,7 +129,6 @@ EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sig
       s1 <- sample(n_st_tmp, size =  p_mut*nPart)
 
       dif1 <- t(apply(st_temp, 2, function(x) {
-        #d1 <- diff(range(x))
         d1 <- mean(x)
         sd1 <- stats::sd(x)
         c(d1 - 2*sd1,d1 + 2*sd1)
@@ -141,8 +138,8 @@ EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sig
       st_temp[s1,] <- temp_part
     }
 
-    # Collecting (1-p_perc)*npart and top particles
     st_temp <- rbind(st_temp,st_temp_bst_idx)
+
     j<-j+1
   }
 

@@ -111,8 +111,9 @@ PF_lm <- function(Y, Data1, n = 500L, sigma_l = 1, sigma_est = FALSE, initDisPar
     Y <- 2 + 1.25*Data1[,1] + 2.6*Data1[,2] - 0.7*Data1[,3] + eps
   }
 
-  if (!is.data.frame(Data1))
+  if (!is.data.frame(Data1) & !is.matrix(Data1))
     stop("Argument 'Data1' must be a data frame or matrix", call. = FALSE)
+
 
   if (length(n)>1)
     stop("Argument 'n' with length > 1", call. = FALSE)
@@ -130,6 +131,7 @@ PF_lm <- function(Y, Data1, n = 500L, sigma_l = 1, sigma_est = FALSE, initDisPar
   if (nrow(Data1) != length(Y))
     stop("Data1 and Y with different dimensions", call. = FALSE)
 
+  Data1 <- data.frame(Data1)
   obs <- nrow(Data1)
   nv <- ncol(Data1)
 

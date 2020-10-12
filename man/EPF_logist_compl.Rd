@@ -88,7 +88,7 @@ Data1 <-  MASS::mvrnorm(100, mu = rep(0, 4),
                        Sigma = diag(4),
                        empirical = TRUE)
 Y1 <- colSums(t(cbind(1,Data1))*val_coef)
-prb <- 1 / (1+exp(-Y1))
+prb <- 1 / (1 + exp(-Y1))
 Y_ <- rbinom(100, size = 1, prob = prb) ##
 #Run EPF
 Res <- EPF_logist_compl(Data = Data1, Y = Y_)
