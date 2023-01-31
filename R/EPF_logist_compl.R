@@ -173,7 +173,7 @@ EPF_logist_compl <- function(Data, Y, nPart = 1000L,
   Yhat_ <- ifelse(logit(cbind(1,Data)%*%colMeans(st_temp_bst_idx)) > thr, 1, 0)
   Yhat_w_ <- ifelse(logit(cbind(1,Data)%*%t(pred))>thr,1,0)
   tock <- Sys.time()-tick
-  #6. Returning values
+  #Returning values
   list(smmry = data.frame(
     GLM_est = stats::coef(stats::glm(Y~Data,family = "binomial")), #OLS using all variables
     PF_est = as.numeric(est_wh)),

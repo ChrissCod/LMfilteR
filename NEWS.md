@@ -1,4 +1,8 @@
 # News
+
+## 0.1.3.1
+* Minor typos and corrections
+* Updated maintainer's email, adding author.
 ## 0.1.3
 * Separation of dependent and independent variables into two separate arguments in PF_lm.R and PF_lm_ss.R
 * Inclusion of utils.R auxiliary functions with resampling methods following Li, T., Bolic, M., & Djuric, P. M. (2015). Resampling methods for particle filtering: classification, implementation, and strategies. IEEE Signal processing magazine, 32(3), 70-86.

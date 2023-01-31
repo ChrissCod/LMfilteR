@@ -166,7 +166,7 @@ EPF_L_compl <- function(Data, Y, nPart = 1000L, p_mut = 0.01, p_cross = 0.5, sig
   Yhat_w_ <- cbind(1,Data)%*%t(pred)
   tock <- Sys.time()-tick
   lmd1 <- stats::lm(Y~.,data = data.frame(Data))
-  #6. Returning values
+  #Returning values
   list(smmry = data.frame(
     OLS_est = stats::coef(lmd1),
     PF_est = as.numeric(est_wh)),
