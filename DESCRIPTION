@@ -12,6 +12,5 @@ License: GPL (>= 2)
 Imports: MASS (>= 7.3-50), stats (>= 3.5.1)
 Depends: R (>= 3.6.0)
 Encoding: UTF-8
-LazyData: true
 BugReports: https://github.com/ChrissCod/LMfilteR/issues
 RoxygenNote: 7.2.3
